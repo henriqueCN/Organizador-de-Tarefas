@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<form action="webservice.php" method="GET">
+	<input type="text" name="acao" value="listarEmails">
+	<input type="text" name="emailUsuario" value="h@h.com">
+	<input type="submit" name="">
+	
+</form>
+<script type="text/javascript">
+	function dropdownProjetosConcluidos(){
+    $.ajax({
+      type: 'GET',
+      url: 'requisicoes_assincronas/webservice.php',
+      data: {
+        acao: 'dropdownProjetosConcluidos' //Envia esse dado como GET para o webservice.
+      },
+      dataType: 'json',
+      success: function(data){
+        console.log(data);
+        for(i = 0; i < data.qtd; i++){
+          $('select[name=selectProjetoConcluido]').append('<option value="'+data.idTarefa[i]+'">'+data.nomeTarefa[i]+'</option>');
+        }
+      }
+    });
+  }
+</script>
+</body>
+</html>
