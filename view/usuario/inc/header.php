@@ -284,32 +284,32 @@ if (!(isset($_SESSION['dadosUsuario']))) {
         <form action="../viewController/cadastrar.php" method="POST">
           <div style="display: inline-block;">
             <label>Nome do Projeto</label>
-            <input type="text" style="margin-bottom: 2% ;  display: inline-block;" class="form-control" placeholder="Nome da tarefa" name="nomeTarefa">
+            <input type="text" style="margin-bottom: 2% ;  display: inline-block;" class="form-control" placeholder="Nome da tarefa" name="projnomeTarefa">
             <label>Especialidade Principal do Projeto   </label><a data-toggle="modal" data-target="#modalEspecialidade" style="margin-bottom: 1%;" class="btn btn-warning"><i class="fa fa-plus-square" aria-hidden="true"></i> Adicionar</a>
-            <select class="form-control" style="display: inline-block; margin-bottom: 2%;" name="selectEspecialidade">
+            <select class="form-control" style="display: inline-block; margin-bottom: 2%;" name="projselectEspecialidade">
               <option >Especialidade da tarefa</option>
             </select>
             <br>
             <label>Descrição</label>
-            <textarea rows="4" cols="30" name = "descricaoTarefa" class="form-control" placeholder="Descricao">
+            <textarea rows="4" cols="30" name = "projdescricaoTarefa" class="form-control" placeholder="Descricao">
 
             </textarea>
             <br>
             <label>Prazo</label>
-            <input type="date" class="form-control" name="prazoTarefa">
+            <input type="date" class="form-control" name="projprazoTarefa">
             <label>Meta de Horas Mensais</label>
-            <input type="time" class="form-control" name="metaHorasMensal">
+            <input type="time" class="form-control" name="projmetaHorasMensal">
           </div>
           <div >
             <br>  
             <label>Tipo de Projeto</label>       
-            <select class="form-control" name="selectTipoTarefa">
+            <select class="form-control" name="projselectTipoTarefa">
               <option value="">Tipo</option>
             </select>
             <br>
           </div>
           <div class="modal-footer">
-            <input type="submit" name="btn_cadastrar_tarefa" class="btn btn-primary" value="Cadastrar">
+            <input type="submit" name="proj_btn_cadastrar_tarefa" class="btn btn-primary" value="Cadastrar">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
           </div>
         </form>          

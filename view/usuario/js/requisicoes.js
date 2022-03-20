@@ -66,6 +66,18 @@ function enviarVetor(email){
   });
 } 
 
+function inserirTarefa() {
+  var nomeTarefa = document.getElementByName("nomeTarefa").value;
+  var especialidadeTarefa = document.getElementByName("selectEspecialidade").value;
+  var descricaoTarefa = document.getElementByName("descricaoTarefa").value;
+  var prazoTarefa = document.getElementByName("prazoTarefa").value;
+  var metaHorasMensal = document.getElementByName("metaHorasMensal").value;
+  var selectTipoTarefa = document.getElementByName("selectTipoTarefa").value;
+  
+
+  
+}
+
 function inserirIntegrante(){
   var projetoEquipe = document.getElementById("projetoEquipe").value;
   var nomeEquipe = document.getElementById("equipe").value;
@@ -194,7 +206,7 @@ function contarTarefasAbertas(){
     },
     dataType: 'json',
     beforeSend: function(){
-      document.getElementById("contarTarefasAbertas").innerHTML = "carregando";
+      document.getElementById("contarTarefasAbertas").innerHTML = "--";
     },
     success: function(data){
       document.getElementById("contarTarefasAbertas").innerHTML = data.qtd;
@@ -214,7 +226,7 @@ function contarTarefasAbertas(){
       },
       dataType: 'json',
       beforeSend: function(){
-        document.getElementById("contarTarefasEmAndamento").innerHTML = "carregando";
+        document.getElementById("contarTarefasEmAndamento").innerHTML = "--";
       },
       success: function(data){
         document.getElementById("contarTarefasEmAndamento").innerHTML = data.qtd;
@@ -234,7 +246,7 @@ function contarTarefasAbertas(){
       },
       dataType: 'json',
       beforeSend: function(){
-        document.getElementById("contarTarefasFinalizadas").innerHTML = "carregando";
+        document.getElementById("contarTarefasFinalizadas").innerHTML = "--";
       },
       success: function(data){
         document.getElementById("contarTarefasFinalizadas").innerHTML = data.qtd;
@@ -254,7 +266,7 @@ function contarTarefasAbertas(){
     },
     dataType: 'json',
     beforeSend: function(){
-        document.getElementById("desempenho").innerHTML = "carregando";
+        document.getElementById("desempenho").innerHTML = "--";
       },
       success: function(data){
         document.getElementById("desempenho").innerHTML = data.resultado;
@@ -273,7 +285,7 @@ function buscarEquipes(){
     },
     dataType: 'json',
     beforeSend: function(){
-      $('#divMostraEquipe').append('<p>Carregando...</p>');
+      $('#divMostraEquipe').append('<p>--</p>');
       $('#divMostraEquipe').empty();
     },
     success: function(data){
@@ -298,7 +310,7 @@ function listarEspecialidades(idProjeto){
     },
     dataType: 'json',
     beforeSend: function(){
-      $('#tabelaDeTarefas').append('<p>Carregando...</p>');
+      $('#tabelaDeTarefas').append('<p>--</p>');
       $('#tabelaDeTarefas').empty();
     },
     success: function(data){
@@ -323,7 +335,7 @@ function listarTarefasPendentes(idProjeto){
     },
     dataType: 'json',
     beforeSend: function(){
-      $('#tabelaDeTarefas').append('<p>Carregando...</p>');
+      $('#tabelaDeTarefas').append('<p>--</p>');
       $('#tabelaDeTarefas').empty();
     },
     success: function(data){
@@ -348,7 +360,7 @@ function listarTarefasEmAndamento(idProjeto){
     },
     dataType: 'json',
     beforeSend: function(){
-      $('#tabelaDeTarefasAndamento').append('<p>Carregando...</p>');
+      $('#tabelaDeTarefasAndamento').append('<p>--</p>');
       $('#tabelaDeTarefasAndamento').empty();
     },
     success: function(data){
@@ -373,7 +385,7 @@ function listarTarefasConcluidas(idProjeto){
     },
     dataType: 'json',
     beforeSend: function(){
-      $('#tabelaDeTarefasConcluidas').append('<p>Carregando...</p>');
+      $('#tabelaDeTarefasConcluidas').append('<p>--</p>');
       $('#tabelaDeTarefasConcluidas').empty();
     },
     success: function(data){
@@ -398,7 +410,7 @@ function listarProjetos(idStatus){
     },
     dataType: 'json',
     beforeSend: function(){
-      $('#tabelaDeProjetos').append('<p>Carregando...</p>');
+      $('#tabelaDeProjetos').append('<p>--</p>');
       $('#tabelaDeProjetos').empty();
     },
     success: function(data){
@@ -441,7 +453,7 @@ function listarTarefasExcluidas(idProjeto){
     },
     dataType: 'json',
     beforeSend: function(){
-      $('#tabelaDeTarefasNaLixeira').append('<p>Carregando...</p>');
+      $('#tabelaDeTarefasNaLixeira').append('<p>--</p>');
       $('#tabelaDeTarefasNaLixeira').empty();
     },
     success: function(data){
@@ -465,7 +477,7 @@ function listarTarefasExcluidas(idProjeto){
       dataType: 'json',
       beforeSend: function(){
         $('#textoDescricao').empty();
-        $('#textoDescricao').append('<p>Carregando...</p>');
+        $('#textoDescricao').append('<p>--</p>');
       },
       success: function(data){
         $('#textoDescricao').empty();
