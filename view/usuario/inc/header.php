@@ -147,29 +147,29 @@ if (!(isset($_SESSION['dadosUsuario']))) {
       </div>
       <div class="modal-body">
 
-      <form action="../viewController/cadastrar.php" method="POST">-->
+      <!--<form action="../viewController/cadastrar.php" method="POST">-->
         <div style="display: inline-block;">
           <label>Nome da Tarefa</label>
-          <input type="text" style="margin-bottom: 2% ;  display: inline-block;" class="form-control" placeholder="Nome da tarefa" name="nomeTarefa">
+          <input type="text" id = "snomeTarefa" style="margin-bottom: 2% ;  display: inline-block;" class="form-control" placeholder="Nome da tarefa" name="nomeTarefa">
           <label>Especialidade da Tarefa</label><a data-toggle="modal" data-target="#modalEspecialidade" style="margin-bottom: 1%;" class="btn btn-warning"><i class="fa fa-plus-square" aria-hidden="true"></i> Adicionar</a>
-          <select class="form-control" style="display: inline-block; margin-bottom: 2%;" name="selectEspecialidade">
+          <select class="form-control" style="display: inline-block; margin-bottom: 2%;" id="sselectEspecialidade" name="selectEspecialidade">
             <option >Especialidade da tarefa</option>
           </select>
           <br>
           <label>Descrição da Tarefa</label>
-          <textarea rows="4" cols="30" name = "descricaoTarefa" class="form-control" placeholder="Descricao">
+          <textarea rows="4" cols="30" name = "descricaoTarefa" id="sdescricaoTarefa" class="form-control" placeholder="Descricao">
 
           </textarea>
           <br>
           <label>Prazo</label>
-          <input type="date" class="form-control" name="prazoTarefa">
+          <input type="date" id = "sprazoTarefa" class="form-control" name="prazoTarefa">
           <label>Meta de Horas Mensais</label>
-          <input type="time" class="form-control" name="metaHorasMensal">
+          <input type="time" id = "smetaHorasMensal" class="form-control" name="metaHorasMensal">
         </div>
         <div >
           <br>  
           <label>Tipo da Tarefa</label>       
-          <select class="form-control" name="selectTipoTarefa">
+          <select class="form-control" id="sselectTipoTarefa" name="selectTipoTarefa">
             <option value="">Tipo de Tarefa</option>
           </select>
           <br>
@@ -186,7 +186,7 @@ if (!(isset($_SESSION['dadosUsuario']))) {
 
         </div>
         <div class="modal-footer">
-          <input type="submit" name="btn_cadastrar_tarefa" class="btn btn-primary" value="Inserir Tarefa">
+          <button name="btn_cadastrar_tarefa" onclick = "inserirTarefa()" data-dismiss="modal" class="btn btn-primary">Inserir Tarefa</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>          
     </div>

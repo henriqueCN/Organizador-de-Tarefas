@@ -67,15 +67,36 @@ function enviarVetor(email){
 } 
 
 function inserirTarefa() {
-  var nomeTarefa = document.getElementByName("nomeTarefa").value;
-  var especialidadeTarefa = document.getElementByName("selectEspecialidade").value;
-  var descricaoTarefa = document.getElementByName("descricaoTarefa").value;
-  var prazoTarefa = document.getElementByName("prazoTarefa").value;
-  var metaHorasMensal = document.getElementByName("metaHorasMensal").value;
-  var selectTipoTarefa = document.getElementByName("selectTipoTarefa").value;
-  
+  var nomeTarefa = document.getElementById("snomeTarefa").value;
+  var especialidadeTarefa = document.getElementById("sselectEspecialidade").value;
+  var descricaoTarefa = document.getElementById("sdescricaoTarefa").value;
+  var prazoTarefa = document.getElementById("sprazoTarefa").value;
+  var metaHorasMensal = document.getElementById("smetaHorasMensal").value;
+  var selectTipoTarefa = document.getElementById("sselectTipoTarefa").value;
 
-  
+  //Pegando o valor do select para sabermos em qual projeto a tarefa a seguir será inserida
+  var select = document.getElementById('idSelectProjetos');
+  var valorSelect = select.options[select.selectedIndex].value;
+
+  $.ajax({
+    type: 'GET',
+    url: 'requisicoes_assincronas/webservice.php',
+    data: {
+      acao: 'inserirTarefa',
+      nomeTarefa: nomeTarefa,
+      especialidadeTarefa: especialidadeTarefa,
+      descricaoTarefa: descricaoTarefa,
+      prazoTarefa: prazoTarefa,
+      metaHorasMensal: metaHorasMensal,
+      selectTipoTarefa: selectTipoTarefa,
+      valorSelect: valorSelect
+    },
+    dataType: 'json',
+    success: function(data){
+      console.log(data);
+      alert("inserido");
+    }
+  }); 
 }
 
 function inserirIntegrante(){
@@ -679,9 +700,10 @@ function buscarTodosDetalhes(id){
     //A variável idDoProjeto passa o id do dropbox para a requisicoes_assincronas/webservice.php para que seja feito o select das tarefas de acordo com o projeto selecionado
   });
 
-  //A Função a seguir sersá responsável por listar as tarefas pendentes e em andamento de forma assíncrona   
-  $('select[name=botaoIniciar]').click(function(){
-    var idDoProjeto = $(this).val();
+  $('button[name=btn_cadastrar_tarefa]').click(function(){
+    var select = document.getElementById('idSelectProjetos');
+    var idDoProjeto = select.options[select.selectedIndex].value; 
+    listarTarefasPendentes(idDoProjeto); 
     listarTarefasEmAndamento(idDoProjeto);
     listarTarefasConcluidas(idDoProjeto);
     calcularProgresso(idDoProjeto);
@@ -704,7 +726,7 @@ function buscarTodosDetalhes(id){
   function excluirERecarregar(id){
     excluirTarefa(id);
   }
-
+  
   $('button[name=botaoIniciar]').click(function(){
     var valor= $(this).val();
     $.ajax({
@@ -718,7 +740,27 @@ function buscarTodosDetalhes(id){
       success: function(data){
         var idPai = data.idTarefa;   
         listarTarefasPendentes(idPai);
-        listarTarefasEmAndamento(idPai);  
+        listarTarefasEmAndamento(idPai);
+        calcularProgresso(idPai);  
+      }
+    });
+  });
+
+  $('button[name=botaoExcluir]').click(function(){
+    var valor= $(this).val();
+    $.ajax({
+      type: 'GET',
+      url: 'requisicoes_assincronas/webservice.php',
+      data: {
+        acao: 'buscarProjetoPai',
+        id: valor
+      },
+      dataType: 'json',
+      success: function(data){
+        var idPai = data.idTarefa;   
+        listarTarefasPendentes(idPai);
+        listarTarefasEmAndamento(idPai);
+        calcularProgresso(idPai);  
       }
     });
   });
@@ -735,7 +777,8 @@ function buscarTodosDetalhes(id){
       dataType: 'json',
       success: function(data){
         var idPai = data.idTarefa;   
-        listarTarefasEmAndamento(idPai);  
+        listarTarefasEmAndamento(idPai); 
+        calcularProgresso(idPai);  
       }
     });
   });

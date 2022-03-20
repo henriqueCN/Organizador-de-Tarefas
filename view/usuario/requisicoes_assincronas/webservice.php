@@ -97,6 +97,39 @@ if($_GET['acao'] == 'inserirIntegrante'){
 
 
 if($_GET['acao'] == 'inserirTarefa'){
+	$nomeTarefa = $_GET['nomeTarefa'];
+	$especialidadeTarefa = $_GET['especialidadeTarefa'];
+	$descricaoTarefa = $_GET['descricaoTarefa'];
+	$prazoTarefa = $_GET['prazoTarefa'];
+	$metaHorasMensal = $_GET['metaHorasMensal'];
+	$tipoTarefa = $_GET['selectTipoTarefa'];
+	$projetoBase = $_GET['valorSelect'];
+	$idStatus = 1;
+
+	$prazo = date('Y-m-d H:i:s', strtotime($prazoTarefa));
+	$metaHoras = date('H:i:s', strtotime($metaHorasMensal));
+	$idUsuario = $value["idUsuario"];
+	$dataCriacao = date('Y-m-d H:i:s');
+
+	if ($projetoBase == null) {
+
+		$tabela = 'tarefa';
+		$colunas = ['nomeTarefa, descricaoTarefa, dataCriacao, prazoTarefa, metaHorasMensal, idUsuario, idTipoTarefa, idStatus, idEspecialidade'];
+		$valores = [''."'$nomeTarefa'".', '."'$descricaoTarefa'".', '."'$dataCriacao'".', '."'$prazo'".', '."'$metaHoras'".', '."'$idUsuario'".', '."'$tipoTarefa'".', '."'$idStatus'".', '."'$especialidadeTarefa'".''];
+		$model = new Model();
+		$model->create($tabela, $colunas, $valores);
+		echo"eita caceta";
+	}
+	//CREATE - Caso haja um projeto, a tarefa em questão será uma tarefa referente ao projeto selecionado
+	else{
+
+		$tabela = 'tarefa';
+		$colunas = ['nomeTarefa, descricaoTarefa, dataCriacao, prazoTarefa, metaHorasMensal, idUsuario, idTipoTarefa, idStatus, FK_idTarefa, idEspecialidade'];
+		$valores = [''."'$nomeTarefa'".', '."'$descricaoTarefa'".', '."'$dataCriacao'".', '."'$prazo'".', '."'$metaHoras'".', '."'$idUsuario'".', '."'$tipoTarefa'".', '."'$idStatus'".','."'$projetoBase'".', '."'$especialidadeTarefa'".''];
+		$model = new Model();
+		$model->create($tabela, $colunas, $valores);		
+	}
+
 	
 }
 
