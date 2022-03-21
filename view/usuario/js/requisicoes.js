@@ -99,6 +99,36 @@ function inserirTarefa() {
   }); 
 }
 
+function inserirProjeto(){
+  var nomeTarefa = document.getElementById("projnomeTarefa").value;
+  var especialidadeTarefa = document.getElementById("projselectEspecialidade").value;
+  var descricaoTarefa = document.getElementById("projdescricaoTarefa").value;
+  var prazoTarefa = document.getElementById("projprazoTarefa").value;
+  var metaHorasMensal = document.getElementById("projmetaHorasMensal").value;
+  var selectTipoTarefa = document.getElementById("projselectTipoTarefa").value;
+
+  $.ajax({
+    type: 'GET',
+    url: 'requisicoes_assincronas/webservice.php',
+    data: {
+      acao: 'inserirTarefa',
+      nomeTarefa: nomeTarefa,
+      especialidadeTarefa: especialidadeTarefa,
+      descricaoTarefa: descricaoTarefa,
+      prazoTarefa: prazoTarefa,
+      metaHorasMensal: metaHorasMensal,
+      selectTipoTarefa: selectTipoTarefa,
+      valorSelect: null
+    },
+    dataType: 'json',
+    success: function(data){
+      console.log(data);
+      alert("inserido");
+    }
+  });
+
+}
+
 function inserirIntegrante(){
   var projetoEquipe = document.getElementById("projetoEquipe").value;
   var nomeEquipe = document.getElementById("equipe").value;
@@ -147,6 +177,23 @@ function dropdownCreate(){
     });
 } 
 
+function dropdownTiposProjetos(){
+  $.ajax({
+    type: 'GET',
+    url: 'requisicoes_assincronas/webservice.php',
+    data: {
+        acao: 'dropdownTipos' //Envia esse dado como GET para o webservice 
+      },
+      dataType: 'json',
+      success: function(data){
+        console.log(data);
+        for(i = 0; i < data.qtd; i++){
+          $('select[name=projselectTipoTarefa').append('<option value="'+data.idTipoTarefa[i]+'">'+data.nomeTipoTarefa[i]+'</option>');
+        }
+      }
+    });
+}
+
 function dropdownTipos(){
   $.ajax({
     type: 'GET',
@@ -159,6 +206,23 @@ function dropdownTipos(){
         console.log(data);
         for(i = 0; i < data.qtd; i++){
           $('select[name=selectTipoTarefa').append('<option value="'+data.idTipoTarefa[i]+'">'+data.nomeTipoTarefa[i]+'</option>');
+        }
+      }
+    });
+}
+
+function dropdownEspecialidadeProjetos(){
+  $.ajax({
+    type: 'GET',
+    url: 'requisicoes_assincronas/webservice.php',
+    data: {
+        acao: 'dropdownEspecialidade' //Envia esse dado como GET para o webservice 
+      },
+      dataType: 'json',
+      success: function(data){
+        console.log(data);
+        for(i = 0; i < data.qtd; i++){
+          $('select[name=projselectEspecialidade').append('<option value="'+data.idEspecialidade[i]+'">'+data.nomeEspecialidade[i]+'</option>');
         }
       }
     });
@@ -787,7 +851,9 @@ function buscarTodosDetalhes(id){
   $(document).ready(function(){
     dropdownCreate();
     dropdownTipos();
+    dropdownTiposProjetos();
     dropdownEspecialidade();
+    dropdownEspecialidadeProjetos();
     dropdownProjetos();
     dropdownProjetosConcluidos();
     buscarEspecialidadeDoUsuario();
