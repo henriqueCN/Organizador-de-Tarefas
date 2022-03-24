@@ -44,7 +44,7 @@
               <i class="fa fa-sitemap fa-5x"></i>
             </div>
             <div class="col-xs-12 text-center">
-              <p>Gerenciar Projetos</p>
+              <p>Ger. Projetos</p>
             </div>
           </div>
         </a>

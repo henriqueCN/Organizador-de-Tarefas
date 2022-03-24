@@ -598,8 +598,13 @@ function excluirTarefa(id){
       idTarefa: id
     },
     dataType: 'json',
-    success: function(data){
-      alert("Registro excluído!");       
+    success: function(){
+      var select = document.getElementById('idSelectProjetos');
+      var valorSelect = select.options[select.selectedIndex].value;
+
+      listarTarefasPendentes(valorSelect);
+      listarTarefasEmAndamento(valorSelect);
+      calcularProgresso(valorSelect);
     }
   });
 } 
@@ -628,7 +633,16 @@ function comecarTarefa(id){
       id: id
     },
     dataType: 'json',
+    success: function(){
+      var select = document.getElementById('idSelectProjetos');
+      var valorSelect = select.options[select.selectedIndex].value;
+
+      listarTarefasPendentes(valorSelect);
+      listarTarefasEmAndamento(valorSelect);
+      calcularProgresso(valorSelect);
+    }
   });
+   
 }  
 //Função responsável por mudar o status da tarefa para "concluído".
 function concluirTarefa(id){ 
@@ -640,9 +654,16 @@ function concluirTarefa(id){
       id: id
     },
     dataType: 'json',
+    success: function(){
+      var select = document.getElementById('idSelectProjetos');
+      var valorSelect = select.options[select.selectedIndex].value;
+
+      listarTarefasPendentes(valorSelect);
+      listarTarefasEmAndamento(valorSelect);
+      calcularProgresso(valorSelect);
+    }
   });
-  $idProject = document.getElementByName('selectProjeto').value;
-  alert($idProject);
+  
 
 }
 //Função responsável por mudar o status da tarefa para "na lixeira".
@@ -803,9 +824,9 @@ function buscarTodosDetalhes(id){
       dataType: 'json',
       success: function(data){
         var idPai = data.idTarefa;   
-        listarTarefasPendentes(idPai);
-        listarTarefasEmAndamento(idPai);
-        calcularProgresso(idPai);  
+        //listarTarefasPendentes(idPai);
+        //listarTarefasEmAndamento(idPai);
+        //calcularProgresso(idPai);  
       }
     });
   });
@@ -822,9 +843,9 @@ function buscarTodosDetalhes(id){
       dataType: 'json',
       success: function(data){
         var idPai = data.idTarefa;   
-        listarTarefasPendentes(idPai);
-        listarTarefasEmAndamento(idPai);
-        calcularProgresso(idPai);  
+        //listarTarefasPendentes(idPai);
+        //listarTarefasEmAndamento(idPai);
+        //calcularProgresso(idPai);  
       }
     });
   });
@@ -841,8 +862,8 @@ function buscarTodosDetalhes(id){
       dataType: 'json',
       success: function(data){
         var idPai = data.idTarefa;   
-        listarTarefasEmAndamento(idPai); 
-        calcularProgresso(idPai);  
+        //listarTarefasEmAndamento(idPai); 
+        //calcularProgresso(idPai);  
       }
     });
   });
