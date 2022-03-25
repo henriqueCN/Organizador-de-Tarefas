@@ -387,15 +387,15 @@ if (!(isset($_SESSION['dadosUsuario']))) {
       <div class="modal-body">
         <p>Olá <?php echo $value["nomeUsuario"]; ?>, esse sistema tem como propósito ajudar na organização de <b>projetos</b> através da desmembração dos mesmos em <b>tarefas</b>, transformando um problema de escopo aberto em várias tarefas de escopo fechado. Para começar, crie um projeto principal, depois vá atribuindo as tarefas a ele.</p>
         <p><strong>Observação: </strong>O formulário para adicionar tarefas e projetos é o mesmo, a diferença de um projeto para uma tarefa é que o projeto não tem nenhum outro Projeto atrelado a ele.</p>
-        <h4 align=""><b>Criando um Projeto</b></h4>
+        <h4 ><b>Criando um Projeto</b></h4>
         <p>Vá na aba <b>"tarefas" > "nova tarefa"</b>, preencha os inputAdicionaPessoass <strong>exceto</strong> o <b>"Projeto"</b>.</p>
-        <h4 align=""><b>Atribuindo uma Tarefa</b></h4>
+        <h4 ><b>Atribuindo uma Tarefa</b></h4>
         <p>Vá na aba <b>"tarefas" > "nova tarefa"</b>, preencha os inputAdicionaPessoass <strong>e selecione o projeto</strong> ao qual a tarefa a ser inserida irá fazer parte no seletor <b>"Projeto"</b>.</p>
-        <h4 align=""><b>Listando as Tarefas</b></h4>
+        <h4 ><b>Listando as Tarefas</b></h4>
         <p>Para visualizar as tarefas, vá na aba <b>"tarefas" > "Todas as Tarefas"</b> e selecione o projeto a ser trabalhado no seletor <strong>"Escolha o Projeto"</strong>.</p>
-        <h4 align=""><b>Relatório</b></h4>
+        <h4 ><b>Relatório</b></h4>
         <p>Na aba <b>"Relatórios"</b> encontram-se os <strong>projetos</strong> e as <strong>tarefas concluídas</strong>.</p>
-        <h4 align=""><b>Meu Perfil</b></h4>
+        <h4 ><b>Meu Perfil</b></h4>
         <p>Na aba <b>"Meu Perfil"</b> é possível trocar o <strong>nome</strong> e a <strong>senha</strong>.</p>
       </div>
     </div>
@@ -411,7 +411,7 @@ if (!(isset($_SESSION['dadosUsuario']))) {
      <span class="icon-bar"></span>
      <span class="icon-bar"></span>
      <span class="icon-bar"></span></button>
-     <a class="navbar-brand" style="center" href="index.php"><span>Aimup</span></a>
+     <a class="navbar-brand" href="index.php"><span>Aimup</span></a>
    </li>
  </ul>
 </div>
