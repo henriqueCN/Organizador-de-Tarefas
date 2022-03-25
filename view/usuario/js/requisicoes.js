@@ -91,10 +91,49 @@ function inserirTarefa() {
       selectTipoTarefa: selectTipoTarefa,
       valorSelect: valorSelect
     },
-    dataType: 'json',
-    success: function(data){
-      console.log(data);
-      alert("inserido");
+    success: function(){
+      var valorSelect = document.getElementById('selectProj').value;
+
+      listarTarefasPendentes(valorSelect);
+      listarTarefasConcluidas(valorSelect);
+      listarTarefasEmAndamento(valorSelect);
+      calcularProgresso(valorSelect);
+    }
+  }); 
+}
+
+function editarTarefa() {
+  var nomeTarefa = document.getElementById("snomeTarefa").value;
+  var especialidadeTarefa = document.getElementById("sselectEspecialidade").value;
+  var descricaoTarefa = document.getElementById("sdescricaoTarefa").value;
+  var prazoTarefa = document.getElementById("sprazoTarefa").value;
+  var metaHorasMensal = document.getElementById("smetaHorasMensal").value;
+  var selectTipoTarefa = document.getElementById("sselectTipoTarefa").value;
+
+  //Pegando o valor do select para sabermos em qual projeto a tarefa a seguir será inserida
+  var select = document.getElementById('idSelectProjetos');
+  var valorSelect = select.options[select.selectedIndex].value;
+
+  $.ajax({
+    type: 'GET',
+    url: 'requisicoes_assincronas/webservice.php',
+    data: {
+      acao: 'inserirTarefa',
+      nomeTarefa: nomeTarefa,
+      especialidadeTarefa: especialidadeTarefa,
+      descricaoTarefa: descricaoTarefa,
+      prazoTarefa: prazoTarefa,
+      metaHorasMensal: metaHorasMensal,
+      selectTipoTarefa: selectTipoTarefa,
+      valorSelect: valorSelect
+    },
+    success: function(){
+      var valorSelect = document.getElementById('selectProj').value;
+
+      listarTarefasPendentes(valorSelect);
+      listarTarefasConcluidas(valorSelect);
+      listarTarefasEmAndamento(valorSelect);
+      calcularProgresso(valorSelect);
     }
   }); 
 }
@@ -597,14 +636,14 @@ function excluirTarefa(id){
       acao: 'excluirTarefa',
       idTarefa: id
     },
-    dataType: 'json',
     success: function(){
-      var select = document.getElementById('idSelectProjetos');
-      var valorSelect = select.options[select.selectedIndex].value;
+      var valorSelect = document.getElementById('selectProj').value;
 
       listarTarefasPendentes(valorSelect);
+      listarTarefasConcluidas(valorSelect);
       listarTarefasEmAndamento(valorSelect);
       calcularProgresso(valorSelect);
+
     }
   });
 } 
@@ -634,10 +673,10 @@ function comecarTarefa(id){
     },
     dataType: 'json',
     success: function(){
-      var select = document.getElementById('idSelectProjetos');
-      var valorSelect = select.options[select.selectedIndex].value;
+      var valorSelect = document.getElementById('selectProj').value;
 
       listarTarefasPendentes(valorSelect);
+      listarTarefasConcluidas(valorSelect);
       listarTarefasEmAndamento(valorSelect);
       calcularProgresso(valorSelect);
     }
@@ -655,8 +694,7 @@ function concluirTarefa(id){
     },
     dataType: 'json',
     success: function(){
-      var select = document.getElementById('idSelectProjetos');
-      var valorSelect = select.options[select.selectedIndex].value;
+      var valorSelect = document.getElementById('selectProj').value;
 
       listarTarefasPendentes(valorSelect);
       listarTarefasEmAndamento(valorSelect);
@@ -785,16 +823,6 @@ function buscarTodosDetalhes(id){
     //A variável idDoProjeto passa o id do dropbox para a requisicoes_assincronas/webservice.php para que seja feito o select das tarefas de acordo com o projeto selecionado
   });
 
-  $('button[name=btn_cadastrar_tarefa]').click(function(){
-    var select = document.getElementById('idSelectProjetos');
-    var idDoProjeto = select.options[select.selectedIndex].value; 
-    listarTarefasPendentes(idDoProjeto); 
-    listarTarefasEmAndamento(idDoProjeto);
-    listarTarefasConcluidas(idDoProjeto);
-    calcularProgresso(idDoProjeto);
-
-    //A variável idDoProjeto passa o id do dropbox para a requisicoes_assincronas/webservice.php para que seja feito o select das tarefas de acordo com o projeto selecionado
-  });
 
   $('select[name=selectProjetoConcluido]').change(function(){
     var idDoProjeto = $(this).val();

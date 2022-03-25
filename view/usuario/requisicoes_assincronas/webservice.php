@@ -527,7 +527,7 @@ elseif($_GET['acao'] == 'concluirTarefa'){
 		$sql = $pdo->prepare("UPDATE tarefa SET idStatus = 3 WHERE idTarefa = :id");
 		$sql->bindValue(":id", $id, PDO::PARAM_INT);
 		$sql->execute();
-		header('Location: ../minhas-tarefas.php');	
+		//header('Location: ../minhas-tarefas.php');	
 	} catch (Exception $e) {
 		echo $e;
 	}

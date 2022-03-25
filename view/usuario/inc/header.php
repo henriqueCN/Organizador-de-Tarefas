@@ -206,7 +206,6 @@ if (!(isset($_SESSION['dadosUsuario']))) {
         <h4 align="center">Editar Tarefa</h4>
       </div>
       <div id="detalhesTarefa">
-        <form method="GET" action="requisicoes_assincronas/webservice.php">
           <div style="padding: 5%;">
             <p>Nome da Tarefa</p>
             <input id="editarNomeTarefa" name="editarNomeTarefa" class="form-control" type="">
@@ -227,10 +226,10 @@ if (!(isset($_SESSION['dadosUsuario']))) {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" name = "atualizar" class="btn btn-success" data-dismiss="Editar">Concluir</button>
+          <button type="button" name = "atualizar" class="btn btn-success" data-dismiss="Editar">Concluir</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
-      </form>
+      
     </div>
   </div>
 </div>
