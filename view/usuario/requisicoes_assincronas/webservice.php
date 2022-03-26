@@ -436,11 +436,11 @@ elseif($_GET['acao'] == 'calcularProgresso'){
 
 
 elseif($_GET['acao'] == 'atualizarInformacoes'){
-	$idTarefa = $_GET['editarIdTarefa'];
-	$nomeTarefa = $_GET['editarNomeTarefa'];
-	$descricaoTarefa = $_GET['editarDescricaoTarefa'];
-	$prazoTarefa = $_GET['editarPrazoTarefa'];
-	$metaHorasMensal=$_GET['editarMetaHoras'];
+	$idTarefa = $_GET['idTarefa'];
+	$nomeTarefa = $_GET['nomeTarefa'];
+	$descricaoTarefa = $_GET['descricaoTarefa'];
+	$prazoTarefa = $_GET['prazoTarefa'];
+	$metaHorasMensal=$_GET['metaHorasMensal'];
 
 	$tabela = 'tarefa';
 	$atributos = [
@@ -451,7 +451,6 @@ elseif($_GET['acao'] == 'atualizarInformacoes'){
 	$condicao = ['idTarefa = "'.$idTarefa.'"'];
 	$model = new Model();
 	$model->update($tabela, $atributos, $condicao);
-	header("Location: ../minhas-tarefas.php");
 }
 
 

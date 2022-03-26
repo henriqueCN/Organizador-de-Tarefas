@@ -103,33 +103,28 @@ function inserirTarefa() {
 }
 
 function editarTarefa() {
-  var nomeTarefa = document.getElementById("snomeTarefa").value;
-  var especialidadeTarefa = document.getElementById("sselectEspecialidade").value;
-  var descricaoTarefa = document.getElementById("sdescricaoTarefa").value;
-  var prazoTarefa = document.getElementById("sprazoTarefa").value;
-  var metaHorasMensal = document.getElementById("smetaHorasMensal").value;
-  var selectTipoTarefa = document.getElementById("sselectTipoTarefa").value;
-
-  //Pegando o valor do select para sabermos em qual projeto a tarefa a seguir será inserida
-  var select = document.getElementById('idSelectProjetos');
-  var valorSelect = select.options[select.selectedIndex].value;
+  var nomeTarefa = document.getElementById("editarNomeTarefa").value;
+  var descricaoTarefa = document.getElementById("editarDescricaoTarefa").value;
+  var prazoTarefa = document.getElementById("editarPrazoTarefa").value;
+  var metaHorasMensal = document.getElementById("editarMetaHoras").value;
+  var idTarefa = document.getElementById("editarIdTarefa").value;
 
   $.ajax({
     type: 'GET',
     url: 'requisicoes_assincronas/webservice.php',
     data: {
-      acao: 'inserirTarefa',
+      acao: 'atualizarInformacoes',
+      idTarefa: idTarefa,
       nomeTarefa: nomeTarefa,
-      especialidadeTarefa: especialidadeTarefa,
       descricaoTarefa: descricaoTarefa,
       prazoTarefa: prazoTarefa,
-      metaHorasMensal: metaHorasMensal,
-      selectTipoTarefa: selectTipoTarefa,
-      valorSelect: valorSelect
+      metaHorasMensal: metaHorasMensal
     },
     success: function(){
+      //-----------------Pegar o valor do dropdown-----------------//
+      //-----------------------------------------------------------//
       var valorSelect = document.getElementById('selectProj').value;
-
+      //-----------------------------------------------------------//
       listarTarefasPendentes(valorSelect);
       listarTarefasConcluidas(valorSelect);
       listarTarefasEmAndamento(valorSelect);
@@ -171,8 +166,6 @@ function inserirProjeto(){
 function inserirIntegrante(){
   var projetoEquipe = document.getElementById("projetoEquipe").value;
   var nomeEquipe = document.getElementById("equipe").value;
-  
-
 
   for (var i = 0; i < vetor.length ; i++) {
     $.ajax({

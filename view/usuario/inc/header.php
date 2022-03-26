@@ -220,13 +220,12 @@ if (!(isset($_SESSION['dadosUsuario']))) {
             <p>Meta de Horas</p>
             <input id="editarMetaHoras" class="form-control" type="" name="editarMetaHoras">
             <br>
-            <input type="hidden" name="acao" value="atualizarInformacoes">
             <input type="hidden" name="editarIdTarefa" id="editarIdTarefa">
             <h4 id="sucessoAoEditarTarefa"></h4>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" name = "atualizar" class="btn btn-success" data-dismiss="Editar">Concluir</button>
+          <button type="button" name = "atualizar" class="btn btn-success" onclick = "inserirTarefa()" data-dismiss="Editar">Atualizar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
       
