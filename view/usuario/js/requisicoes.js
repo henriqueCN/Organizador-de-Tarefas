@@ -457,6 +457,7 @@ function listarTarefasPendentes(idProjeto){
     },
     success: function(data){
       $('#tarefasPendentes').empty();
+      $('#quantTarefasPendentes').empty();
         $('#tarefasPendentes').append('<tr><th style="padding: 20px;">Nome da Tarefa</th><th style="padding: 20px;">Descrição da Tarefa</th><th style="padding: 20px;">Data Criação</th><th style="padding: 20px;">Prazo</th><th style="padding: 20px;">Fazer</th><th style="padding: 20px;">Detalhes</th><th style="padding: 20px;">Editar</th><th style="padding: 20px;">Excluir</th></tr>'); //Criando os índices no html
         for(i = 0; i < data.qtd; i++){
           $("#tarefasPendentes").append('<tr><td style="padding: 20px;" >'+data.nomeTarefa[i]+'</td><td style="padding: 20px;"><a id="'+data.idTarefa[i]+'" name="botaoDescricao" class="btn btn-primary" href="#" data-toggle="modal" onclick="buscarDescricao(this.id)" data-target="#modalDescricao">Ver descrição</a></td><td style="padding: 20px;" >'+data.dataCriacao[i]+'</td><td style="padding: 20px;" >'+data.prazoTarefa[i]+'</td><td class = "td_ajuste"><a id="'+data.idTarefa[i]+'" class="btn btn-info" onclick="confirmarInicio(this.id)" data-toggle="modal" data-target="#modalInicio"><i style="font-size: 1.2em;" class="fa fa-hand-o-left"></i></a></td><td class = "td_ajuste"><a href="#" data-toggle="modal" id = "'+data.idTarefa[i]+'"class="btn btn-primary" onclick="buscarTodosDetalhes(this.id)" data-target="#modalDetalhes" style="background-color: #4E5344; border-color: #4E5344"><i style="font-size: 1.2em;" class="fa fa-list-alt"></i></a></td><td class = "td_ajuste"><a href="#" id = "'+data.idTarefa[i]+'" class="btn btn-primary" data-toggle="modal"  data-target="#modalEdicao" onclick="buscarInformacoes(this.id)"><i style="font-size: 1.2em;" class="fa fa-pencil"></i></a></td><td class = "td_ajuste"><a class="btn btn-danger" id="'+data.idTarefa[i]+'" onclick="confirmarExclusao(this.id)" data-toggle="modal" data-target="#modalConfirmacao"><i style="font-size: 1.4em;" class="fa fa-trash"></i></a></td></tr>'); //Aqui está sendo criado uma linha de uma tabela a cada looping 
@@ -482,6 +483,7 @@ function listarTarefasEmAndamento(idProjeto){
     },
     success: function(data){
       $('#tarefasEmAndamento').empty();
+      $('#quantTarefasEmAndamento').empty();
         $('#tarefasEmAndamento').append('<tr><th style="padding: 20px;">Nome da Tarefa</th><th style="padding: 20px;">Descrição da Tarefa</th><th style="padding: 20px;">Data Criação</th><th style="padding: 20px;">Prazo</th><th style="padding: 20px;">Concluir</th><th style="padding: 20px;">Detalhes</th><th style="padding: 20px;">Editar</th><th style="padding: 20px;">Excluir</th></tr>'); //Criando os índices no html
         for(i = 0; i < data.qtd; i++){
           $("#tarefasEmAndamento").append('<tr><td style="padding: 20px;" >'+data.nomeTarefa[i]+'</td><td style="padding: 20px;"><a id="'+data.idTarefa[i]+'" name="botaoDescricao" class="btn btn-primary" href="#" data-toggle="modal" onclick="buscarDescricao(this.id)" data-target="#modalDescricao">Ver descrição</a></td><td style="padding: 20px;" >'+data.dataCriacao[i]+'</td><td style="padding: 20px;" >'+data.prazoTarefa[i]+'</td><td class = "td_ajuste"><a id="'+data.idTarefa[i]+'" class="btn btn-info" onclick="confirmarConclusao(this.id)" data-toggle="modal" data-target="#modalConclusao"><i style="font-size: 1.2em;" class="fa fa-hand-o-left"></i></a></td><td class = "td_ajuste"><a href="#" data-toggle="modal" id = "'+data.idTarefa[i]+'"class="btn btn-primary" onclick="buscarTodosDetalhes(this.id)" data-target="#modalDetalhes" style="background-color: #4E5344; border-color: #4E5344"><i style="font-size: 1.2em;" class="fa fa-list-alt"></i></a></td><td class = "td_ajuste"><a href="#" id = "'+data.idTarefa[i]+'" class="btn btn-primary" data-toggle="modal"  data-target="#modalEdicao" onclick="buscarInformacoes(this.id)"><i style="font-size: 1.2em;" class="fa fa-pencil"></i></a></td><td class = "td_ajuste"><a class="btn btn-danger" id="'+data.idTarefa[i]+'" onclick="confirmarExclusao(this.id)" data-toggle="modal" data-target="#modalConfirmacao"><i style="font-size: 1.4em;" class="fa fa-trash"></i></a></td></tr>'); //Aqui está sendo criado uma linha de uma tabela a cada looping
@@ -507,6 +509,7 @@ function listarTarefasConcluidas(idProjeto){
     },
     success: function(data){
       $('#tarefasConcluidas').empty();
+      $('#quantTarefasConcluidas').empty();
         $('#tarefasConcluidas').append('<tr><th style="padding: 20px;">Nome da Tarefa</th><th style="padding: 20px;">Descrição da Tarefa</th><th style="padding: 20px;">Data Criação</th><th style="padding: 20px;">Prazo</th><th style="padding: 20px;">Renovar</th><th style="padding: 20px;">Detalhes</th><th style="padding: 20px;">Excluir</th></tr>'); //Criando os índices no html
         for(i = 0; i < data.qtd; i++){
           $("#tarefasConcluidas").append('<tr><td style="padding: 20px;" >'+data.nomeTarefa[i]+'</td><td style="padding: 20px;"><a id="'+data.idTarefa[i]+'" name = "botaoDescricao" class="btn btn-primary" href="#" value="" data-toggle="modal" onclick="buscarDescricao(this.id)" data-target="#modalDescricao">Ver descrição</a></td><td style="padding: 20px;" >'+data.dataCriacao[i]+'</td><td style="padding: 20px;" >'+data.prazoTarefa[i]+'</td><td class = "td_ajuste"><a id="'+data.idTarefa[i]+'" class="btn btn-info" onclick="confirmarInicio(this.id)" data-toggle="modal" data-target="#modalRenovacao"><i style="font-size: 1.2em;" class="fa fa-hand-o-left"></i></a></td><td class = "td_ajuste"><a href="#" data-toggle="modal" id = "'+data.idTarefa[i]+'" class="btn btn-primary" onclick="buscarTodosDetalhes(this.id)" data-target="#modalDetalhes" style="background-color: #4E5344; border-color: #4E5344"><i style="font-size: 1.2em;" class="fa fa-list-alt"></i></a></td><td class = "td_ajuste"><a class="btn btn-danger" id="'+data.idTarefa[i]+'" onclick="confirmarExclusao(this.id)" data-toggle="modal" data-target="#modalConfirmacao"><i style="font-size: 1.4em;" class="fa fa-trash"></i></a></td></tr>'); //Aqui está sendo criado uma linha de uma tabela a cada looping    
@@ -631,15 +634,17 @@ function excluirTarefa(id){
     },
     success: function(){
       var valorSelect = document.getElementById('selectProj').value;
-
-      listarTarefasPendentes(valorSelect);
-      listarTarefasConcluidas(valorSelect);
-      listarTarefasEmAndamento(valorSelect);
-      calcularProgresso(valorSelect);
-
+        listarTarefasPendentes(valorSelect);
+        listarTarefasConcluidas(valorSelect);
+        listarTarefasEmAndamento(valorSelect);
+        calcularProgresso(valorSelect); 
     }
   });
+  var valo = document.getElementById('selectProjetosConcluidos').value;
+  listarTarefasConcluidas(valo);
+  calcularProgresso(valo);
 } 
+
 
 function excluirEspecialidade(id){ 
   $.ajax({
@@ -674,6 +679,12 @@ function comecarTarefa(id){
       calcularProgresso(valorSelect);
     }
   });
+  var valo = document.getElementById('selectProjetosConcluidos').value;
+  listarTarefasEmAndamento(valo);
+  listarTarefasConcluidas(valo);
+  contarTarefasAbertas(valo);
+  contarTarefasFinalizadas(valo);
+  calcularProgresso(valo);
    
 }  
 //Função responsável por mudar o status da tarefa para "concluído".
@@ -820,8 +831,12 @@ function buscarTodosDetalhes(id){
   $('select[name=selectProjetoConcluido]').change(function(){
     var idDoProjeto = $(this).val();
     listarTarefasConcluidas(idDoProjeto);
+    listarTarefasEmAndamento(idDoProjeto);
+    listarTarefasPendentes(idDoProjeto);
+    contar(idDoProjeto);
     //A variável idDoProjeto passa o id do dropbox para a requisicoes_assincronas/webservice.php para que seja feito o select das tarefas de acordo com o projeto selecionado
   });
+
   $('select[name=dropProjetos]').change(function(){
     $('#tabelaProjetos').empty();
     var idStatus= $(this).val();
@@ -900,5 +915,4 @@ function buscarTodosDetalhes(id){
     dropdownProjetosConcluidos();
     buscarEspecialidadeDoUsuario();
     buscarEquipes();
-
   });

@@ -224,6 +224,9 @@ if (!(isset($_SESSION['dadosUsuario']))) {
             <h4 id="sucessoAoEditarTarefa"></h4>
           </div>
         </div>
+
+        
+
         <div class="modal-footer">
           <button type="button" name = "atualizar" class="btn btn-success" onclick = "editarTarefa()" data-dismiss="Editar">Atualizar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -232,6 +235,25 @@ if (!(isset($_SESSION['dadosUsuario']))) {
     </div>
   </div>
 </div>
+
+            <!-- Modal de Exclusão -->
+            <div class="modal fade" id="modalConfirmacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div>
+              <h4 align="center">Confirmação</h4>
+
+            </div>
+            <div style="padding: 5%;">
+              <b style="color: red">Deseja realmente excluir esta tarefa?</b>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="excluirERecarregar(this.value)" name="botaoExcluir">Excluir</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 <!--Modal de edição de equipe-->
 <div class="modal fade" id="modalEdicaoEquipe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -442,6 +464,9 @@ if (!(isset($_SESSION['dadosUsuario']))) {
 					</a></li>-->
 					<li><a class="" href="minhas-tarefas.php">
 						<span class="fa fa-tasks">&nbsp;</span> Todas as Tarefas
+					</a></li>
+          <li><a class="" href="#" data-toggle = "modal" data-target="#modalEspecialidade">
+						<span class="fa fa-briefcase">&nbsp;</span> Nova Especialidade
 					</a></li>
 				</ul>
 			</li>

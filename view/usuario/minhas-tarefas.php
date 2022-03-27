@@ -122,24 +122,7 @@
           </div>
         </div>
       </div>
-            <!-- Modal -->
-      <div class="modal fade" id="modalConfirmacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-          <div class="modal-content">
-            <div>
-              <h4 align="center">Confirmação</h4>
 
-            </div>
-            <div style="padding: 5%;">
-              <b style="color: red">Deseja realmente excluir esta tarefa?</b>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="excluirERecarregar(this.value)" name="botaoExcluir">Excluir</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-            </div>
-          </div>
-        </div>
-      </div>
       <!--Modal Detahes-->
       <div class="modal fade" id="modalDetalhes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

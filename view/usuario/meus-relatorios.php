@@ -9,7 +9,6 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">Manipulação de Projetos</h1>
-      <button class="btn btn-primary" style="margin-bottom: 1%;" href="#" data-toggle="modal" data-target="#modalEspecialidade" id="cadastroEspecialidade">Cadastrar nova especialidade</button>
 		</div>	
 	</div><!--/.row-->
 
@@ -18,7 +17,7 @@
       <div class="panel panel-default">
         <div class="panel-body easypiechart-panel">
           <h4>Tarefas Abertas</h4>
-          <div class="easypiechart" id="easypiechart-blue" data-percent="100" ><span class="percent" id="contarTarefasAbertas"></span></div>
+          <div class="easypiechart" id="easypiechart-blue" data-percent="100" ><span class="percent" id="quantTarefasPendentes"></span></div>
         </div>
       </div>
     </div>
@@ -26,7 +25,7 @@
         <div class="panel panel-default">
           <div class="panel-body easypiechart-panel">
             <h4>Tarefas em Andamento</h4>
-            <div class="easypiechart" id="easypiechart-orange" data-percent="100" ><span class="percent" id="contarTarefasEmAndamento"></span></div>
+            <div class="easypiechart" id="easypiechart-orange" data-percent="100" ><span class="percent" id="quantTarefasEmAndamento"></span></div>
           </div>
         </div>
       </div>      
@@ -34,7 +33,7 @@
         <div class="panel panel-default">
           <div class="panel-body easypiechart-panel">
             <h4>Tarefas Finalizadas</h4>
-            <div class="easypiechart" id="easypiechart-teal" data-percent="100" ><span class="percent" id="contarTarefasFinalizadas"></span></div>
+            <div class="easypiechart" id="easypiechart-teal" data-percent="100" ><span class="percent" id="quantTarefasConcluidas"></span></div>
           </div>
         </div>
       </div>
@@ -110,7 +109,7 @@
       </div>
       <br>
     <div class="table-responsive" style="padding-bottom: 2%;">
-      <select class="form-control"  style="width: 50%; display: inline-block;"  name="selectProjetoConcluido">
+      <select class="form-control"  style="width: 50%; display: inline-block;" id = "selectProjetosConcluidos"  name="selectProjetoConcluido">
       <option value="">Escolha o projeto</option>
       </select>
       <br>
@@ -183,23 +182,7 @@
           </div>
         </div>
       </div>
-            <!-- Modal -->
-      <div class="modal fade" id="modalConfirmacao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-          <div class="modal-content">
-            <div>
-              <h4 align="center">Exclusão permanente</h4>
-
-            </div>
-            <div style="padding: 5%;">
-              <b style="color: red">Deseja realmente excluir esta tarefa?</b>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="excluirERecarregar(this.value)" name="botaoExcluir">Excluir</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-            </div>
-          </div>
-        </div>
+            
       </div>
             <!--Modal Detahes-->
       <div class="modal fade" id="modalDetalhes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -239,6 +222,8 @@
     contarTarefasEmAndamento(); 
     contarTarefasFinalizadas();
   });
+
+
 
 </script>
 
