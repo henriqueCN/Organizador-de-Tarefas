@@ -225,8 +225,8 @@ if (!(isset($_SESSION['dadosUsuario']))) {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" name = "atualizar" class="btn btn-success" onclick = "inserirTarefa()" data-dismiss="Editar">Atualizar</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" name = "atualizar" class="btn btn-success" onclick = "editarTarefa()" data-dismiss="Editar">Atualizar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
       
     </div>
