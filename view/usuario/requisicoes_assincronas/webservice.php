@@ -481,6 +481,10 @@ elseif($_GET['acao'] == 'listarEspecialidadesDoUsuario'){
 	while($ln = $sql->fetchObject()){
 		$retorno['nomeEspecialidade'][$n]	= $ln->nomeEspecialidade;
 		$retorno['idEspecialidade'][$n]	= $ln->idEspecialidade;
+		if ($retorno['idEspecialidade'][$n]	== null || $retorno['nomeEspecialidade'][$n] == null) {
+			$retorno['idEspecialidade'][$n]	= "Sem especialidade";
+			$retorno['nomeEspecialidade'][$n]	= "Sem especialidade";
+		}
 		$n++;
 	}
 	$sql = '';
@@ -503,6 +507,7 @@ elseif($_GET['acao'] == 'excluirEspecialidade'){
 	$condicao = "idUsuario = $idUsuario AND idEspecialidade = $idEspecialidade";
 	$model = new Model();
 	$model->delete($tabela, $condicao);
+
 }
 
 //Função para listar as descrições das tarefas 
@@ -524,6 +529,18 @@ elseif($_GET['acao'] == 'concluirTarefa'){
 	try {
 		$id = $_GET['id'];
 		$sql = $pdo->prepare("UPDATE tarefa SET idStatus = 3 WHERE idTarefa = :id");
+		$sql->bindValue(":id", $id, PDO::PARAM_INT);
+		$sql->execute();
+		//header('Location: ../minhas-tarefas.php');	
+	} catch (Exception $e) {
+		echo $e;
+	}
+}
+
+elseif($_GET['acao'] == 'tornarPendente'){
+	try {
+		$id = $_GET['id'];
+		$sql = $pdo->prepare("UPDATE tarefa SET idStatus = 1 WHERE idTarefa = :id");
 		$sql->bindValue(":id", $id, PDO::PARAM_INT);
 		$sql->execute();
 		//header('Location: ../minhas-tarefas.php');	

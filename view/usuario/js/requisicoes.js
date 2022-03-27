@@ -483,10 +483,9 @@ function listarTarefasEmAndamento(idProjeto){
     },
     success: function(data){
       $('#tarefasEmAndamento').empty();
-      $('#quantTarefasEmAndamento').empty();
-        $('#tarefasEmAndamento').append('<tr><th style="padding: 20px;">Nome da Tarefa</th><th style="padding: 20px;">Descrição da Tarefa</th><th style="padding: 20px;">Data Criação</th><th style="padding: 20px;">Prazo</th><th style="padding: 20px;">Concluir</th><th style="padding: 20px;">Detalhes</th><th style="padding: 20px;">Editar</th><th style="padding: 20px;">Excluir</th></tr>'); //Criando os índices no html
+        $('#tarefasEmAndamento').append('<tr><th style="padding: 20px;">Nome da Tarefa</th><th style="padding: 20px;">Descrição da Tarefa</th><th style="padding: 20px;">Data Criação</th><th style="padding: 20px;">Prazo</th><th style="padding: 20px;">Concluir</th><th style="padding: 20px;">Pendente</th><th style="padding: 20px;">Detalhes</th><th style="padding: 20px;">Editar</th><th style="padding: 20px;">Excluir</th></tr>'); //Criando os índices no html
         for(i = 0; i < data.qtd; i++){
-          $("#tarefasEmAndamento").append('<tr><td style="padding: 20px;" >'+data.nomeTarefa[i]+'</td><td style="padding: 20px;"><a id="'+data.idTarefa[i]+'" name="botaoDescricao" class="btn btn-primary" href="#" data-toggle="modal" onclick="buscarDescricao(this.id)" data-target="#modalDescricao">Ver descrição</a></td><td style="padding: 20px;" >'+data.dataCriacao[i]+'</td><td style="padding: 20px;" >'+data.prazoTarefa[i]+'</td><td class = "td_ajuste"><a id="'+data.idTarefa[i]+'" class="btn btn-info" onclick="confirmarConclusao(this.id)" data-toggle="modal" data-target="#modalConclusao"><i style="font-size: 1.2em;" class="fa fa-hand-o-left"></i></a></td><td class = "td_ajuste"><a href="#" data-toggle="modal" id = "'+data.idTarefa[i]+'"class="btn btn-primary" onclick="buscarTodosDetalhes(this.id)" data-target="#modalDetalhes" style="background-color: #4E5344; border-color: #4E5344"><i style="font-size: 1.2em;" class="fa fa-list-alt"></i></a></td><td class = "td_ajuste"><a href="#" id = "'+data.idTarefa[i]+'" class="btn btn-primary" data-toggle="modal"  data-target="#modalEdicao" onclick="buscarInformacoes(this.id)"><i style="font-size: 1.2em;" class="fa fa-pencil"></i></a></td><td class = "td_ajuste"><a class="btn btn-danger" id="'+data.idTarefa[i]+'" onclick="confirmarExclusao(this.id)" data-toggle="modal" data-target="#modalConfirmacao"><i style="font-size: 1.4em;" class="fa fa-trash"></i></a></td></tr>'); //Aqui está sendo criado uma linha de uma tabela a cada looping
+          $("#tarefasEmAndamento").append('<tr><td style="padding: 20px;" >'+data.nomeTarefa[i]+'</td><td style="padding: 20px;"><a id="'+data.idTarefa[i]+'" name="botaoDescricao" class="btn btn-primary" href="#" data-toggle="modal" onclick="buscarDescricao(this.id)" data-target="#modalDescricao">Ver descrição</a></td><td style="padding: 20px;" >'+data.dataCriacao[i]+'</td><td style="padding: 20px;" >'+data.prazoTarefa[i]+'</td><td class = "td_ajuste"><a id="'+data.idTarefa[i]+'" class="btn btn-success" onclick="confirmarConclusao(this.id)" data-toggle="modal" data-target="#modalConclusao"><i style="font-size: 1.2em;" class="fa fa-check"></i></a></td><td class = "td_ajuste"><a id="'+data.idTarefa[i]+'" class="btn btn-warning" onclick="confirmarPendencia(this.id)" data-toggle="modal" data-target="#modalPendencia"><i style="font-size: 1.2em;" class="fa fa-undo"></i></a></td><td class = "td_ajuste"><a href="#" data-toggle="modal" id = "'+data.idTarefa[i]+'"class="btn btn-primary" onclick="buscarTodosDetalhes(this.id)" data-target="#modalDetalhes" style="background-color: #4E5344; border-color: #4E5344"><i style="font-size: 1.2em;" class="fa fa-list-alt"></i></a></td><td class = "td_ajuste"><a href="#" id = "'+data.idTarefa[i]+'" class="btn btn-primary" data-toggle="modal"  data-target="#modalEdicao" onclick="buscarInformacoes(this.id)"><i style="font-size: 1.2em;" class="fa fa-pencil"></i></a></td><td class = "td_ajuste"><a class="btn btn-danger" id="'+data.idTarefa[i]+'" onclick="confirmarExclusao(this.id)" data-toggle="modal" data-target="#modalConfirmacao"><i style="font-size: 1.4em;" class="fa fa-trash"></i></a></td></tr>'); //Aqui está sendo criado uma linha de uma tabela a cada looping
           document.getElementById("quantTarefasEmAndamento").innerHTML = data.qtd;       
         }
       }
@@ -654,11 +653,11 @@ function excluirEspecialidade(id){
       acao: 'excluirEspecialidade',
       idEspecialidade: id
     },
-    dataType: 'json',
     success: function(data){
-      alert("Especialidade excluída!");       
+      buscarEspecialidadeDoUsuario();       
     }
   });
+  
 } 
 //Função responsável por mudar o status da tarefa para "em andamento".
 function comecarTarefa(id){ 
@@ -688,6 +687,8 @@ function comecarTarefa(id){
    
 }  
 //Função responsável por mudar o status da tarefa para "concluído".
+
+
 function concluirTarefa(id){ 
   $.ajax({
     type: 'GET',
@@ -700,6 +701,24 @@ function concluirTarefa(id){
     success: function(){
       var valorSelect = document.getElementById('selectProj').value;
 
+      listarTarefasPendentes(valorSelect);
+      listarTarefasEmAndamento(valorSelect);
+      calcularProgresso(valorSelect);
+    }
+  });
+}
+
+function tornarPendente(id){ 
+  $.ajax({
+    type: 'GET',
+    url: 'requisicoes_assincronas/webservice.php',
+    data: {
+      acao: 'tornarPendente',
+      id: id
+    },
+    dataType: 'json',
+    success: function(){
+      var valorSelect = document.getElementById('selectProj').value;
       listarTarefasPendentes(valorSelect);
       listarTarefasEmAndamento(valorSelect);
       calcularProgresso(valorSelect);
@@ -770,10 +789,13 @@ function moverParaLixeira(id){
         acao: 'listarEspecialidadesDoUsuario'
       },
       dataType: 'json',
+      beforeSend: function(){
+        $('#nomeEspecialidades').empty();
+      },
       success: function(data){
         console.log(data);
-        for(i = 0; i < data.qtd; i++){
-          $('#nomeEspecialidades').append(' '+data.nomeEspecialidade[i]+' <a href="#" id="'+data.idEspecialidade[i]+'" onclick="excluirEspecialidade(this.id)"><i style = "color: red;" class="fa fa-minus-circle" aria-hidden="true></i>"</a> <spam style="color: black;">|</spam> ');   
+        for(i = 0; i < data.qtd; i++){ 
+          $('#nomeEspecialidades').append(' '+data.nomeEspecialidade[i]+' <span id="'+data.idEspecialidade[i]+'" onclick="excluirEspecialidade(this.id)"><i style = "color: red;" class="fa fa-minus-circle" aria-hidden="true></i>"</span> <spam style="color: black;">|</spam> ');   
         }
       }
     });
@@ -785,6 +807,10 @@ function moverParaLixeira(id){
   //Função responsável por confirmar a conclusão de uma tarefa através do modal.
   function confirmarConclusao(id){
     $('[name = botaoConcluir]').val(id);
+  }
+
+  function confirmarPendencia(id){
+    $('[name = botaoPendencia]').val(id);
   }
   //Função responsável por confirmar o início de uma tarefa através do modal.
   function confirmarInicio(id){
@@ -903,6 +929,7 @@ function buscarTodosDetalhes(id){
       }
     });
   });
+
 
   //A Função a seguir será responsável por preencher o dropbox da seleção do projeto.
   $(document).ready(function(){

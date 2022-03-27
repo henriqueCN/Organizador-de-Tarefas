@@ -468,9 +468,11 @@ if (!(isset($_SESSION['dadosUsuario']))) {
           <li><a class="" href="#" data-toggle = "modal" data-target="#modalEspecialidade">
 						<span class="fa fa-briefcase">&nbsp;</span> Nova Especialidade
 					</a></li>
+          <li><a class="" href="meus-relatorios.php">
+						<span class="fa fa-check-square-o">&nbsp;</span> Tarefas Concluídas
+					</a></li>
 				</ul>
 			</li>
-      <li><a href="meus-relatorios.php"><em class="fa fa-check-square-o">&nbsp;</em>Tarefas Concluídas</a></li>
       <li><a href="meu-perfil.php"><em class="fa fa-user">&nbsp;</em> Meu Perfil</a></li>
       <!--<li><a class="" href="#" data-toggle="modal" data-target="#modalAdicionarPessoas"><em class="fa fa-handshake-o">&nbsp;</em> Nova Equipe</a></li>-->
       <li><a href="#" data-toggle="modal" data-target="#modalExplicacao"><em class="fa fa-question">&nbsp;</em> Como funciona o sistema</a></li>

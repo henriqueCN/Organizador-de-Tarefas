@@ -105,6 +105,24 @@
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="modalPendencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div>
+              <h4 align="center">Tornar Tarefa Pendente</h4>
+
+            </div>
+            <div style="padding: 5%;">
+              <b style="color: Grey">Deseja retornar o estado dessa tarefa para "Pendente"?</b>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-warning" onclick="tornarPendente(this.value)" data-dismiss="modal" name="botaoPendencia">Sim</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Modal -->
       <div class="modal fade" id="modalDescricao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
